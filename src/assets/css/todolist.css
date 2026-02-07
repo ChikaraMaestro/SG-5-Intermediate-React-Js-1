@@ -54,6 +54,11 @@ body {
   max-width: 450px;
 }
 
+.action-button {
+    display: flex;
+    gap: 10px;
+}
+
 .profile-section {
   display: flex;
   flex-direction: column;
@@ -87,7 +92,7 @@ body {
   gap: 10px;
   margin-top: 12px;
   margin-bottom: 20px;
-  width: fit-content;
+  width: 100%;
 }
 input {
   flex: 1;

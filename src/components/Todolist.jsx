@@ -58,8 +58,7 @@ const sortedTodo = useMemo(()=>{
     <div className="card todo-section">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
       <h3>My Tasks</h3>
-      <h3>Todo List Selesai</h3>
-      <span>{finishedCount}/{totalTodo}</span>
+      <span><h3>Todo-List Selesai : {finishedCount}/{totalTodo}</h3></span>
     </div>
       <div className="input-group">
         <input
@@ -92,6 +91,7 @@ const sortedTodo = useMemo(()=>{
               <span>
                 <b>{element.id}</b> {element.deskripsi}
               </span>
+              <div className='action-button' >
               <Button variant='succes' onClick={()=>succesTodo(element.id)}>
                   <FaCheck />
               </Button>
@@ -99,6 +99,7 @@ const sortedTodo = useMemo(()=>{
               <Button variant='danger' onClick={()=>deleteTodo(element.id)}>
                   <FaTrash />
               </Button>
+              </div>
             </li>
           );
         })}
