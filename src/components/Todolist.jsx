@@ -1,4 +1,4 @@
-import {useState, useMemo} from 'react';
+import {useState, useMemo, useEffect} from 'react';
 import Button from './Button';
 import { FaTrash } from "react-icons/fa";
 import NoItem from './atoms/NoItem';
@@ -10,12 +10,14 @@ const TodoList = ({inputRef, isDarkMode}) => {
   const [todo, setTodo] = useState('');
   const [finishedCount, setFinishedCount] = useState(0);
 
-  const [list, setList] = useState([
-    {
-      id: 1,
-      deskripsi: 'Belajar ReactJs',
-    },
-  ]);
+  const [list, setList] = useState(() => {
+    const savedList = localStorage.getItem('myTodoList');
+    return savedList ? JSON.parse(savedList) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('myTodoList', JSON.stringify(list));
+  }, [list]);
 
   const totalTodo =list.length + finishedCount;
 

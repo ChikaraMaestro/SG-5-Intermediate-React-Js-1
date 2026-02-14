@@ -19,7 +19,11 @@ const ProfileCard = ({isDarkMode, setIsDarkMode}) => {
         blanditiis quaerat obcaecati.
       </p>
 
-      <Button variant='secondary' onClick={()=>setIsDarkMode(!isDarkMode)}>
+      <Button 
+      variant='secondary'
+      onClick={()=>{
+        setIsDarkMode(!isDarkMode);
+        localStorage.setItem('isDarkMode', !isDarkMode)}}>
         {isDarkMode ? "Dark Mode" : "Light Mode"}
       </Button>
     </div>

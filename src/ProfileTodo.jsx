@@ -3,20 +3,24 @@ import ProfileCard from './components/ProfileCard';
 import TodoList from './components/Todolist';
 
 const ProfileTodo = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false)
-  const inputRef = useRef(null)
+ const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('isDarkMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
+
+  const inputRef = useRef(null);
 
   useEffect(()=>{
     inputRef.current.focus();
 },[]);
 
 useEffect(()=>{
+  localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
   if(isDarkMode){
     document.body.classList.add("dark-mode")
   }else{
     document.body.classList.remove("dark-mode")
   }
-
 },[isDarkMode])
 
   return (
