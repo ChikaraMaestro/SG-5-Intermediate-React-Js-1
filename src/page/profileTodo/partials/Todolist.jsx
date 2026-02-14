@@ -1,7 +1,7 @@
 import {useState, useMemo, useEffect} from 'react';
-import Button from './Button';
+import Button from '../../../components/Button';
 import { FaTrash } from "react-icons/fa";
-import NoItem from './atoms/NoItem';
+import NoItem from '../../../components/atoms/NoItem';
 import { FaCheck } from "react-icons/fa";
 
 
@@ -98,7 +98,7 @@ const sortedTodo = useMemo(()=>{
       <ul className="flex flex-col gap-3  ">
         {sortedTodo.map((element, index) => {
           return (
-            <li key={index} className={`flex justify-between items-center p-3! px-4! rounded-lg border-l-4 shadow-sm transition-all ${
+            <li key={element.id} className={`flex justify-between items-center p-3! px-4! rounded-lg border-l-4 shadow-sm transition-all animate-slide-in ${
                     isDarkMode 
                     ? "bg-[#333333] border-[#333333] border-l-[#4285f4]" 
                     : "bg-[#ffffff] border-[#ffffff] border-l-[#4285f4]"
