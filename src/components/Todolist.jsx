@@ -1,4 +1,3 @@
-import '../assets/css/todolist.css';
 import {useState, useMemo} from 'react';
 import Button from './Button';
 import { FaTrash } from "react-icons/fa";
@@ -6,10 +5,9 @@ import NoItem from './atoms/NoItem';
 import { FaCheck } from "react-icons/fa";
 
 
-const TodoList = ({inputRef}) => {
+const TodoList = ({inputRef, isDarkMode}) => {
   const[isAscending, setIsAscending]=useState(true)
   const [todo, setTodo] = useState('');
-
   const [finishedCount, setFinishedCount] = useState(0);
 
   const [list, setList] = useState([
@@ -55,20 +53,29 @@ const sortedTodo = useMemo(()=>{
 
 
   return (
-    <div className="card todo-section">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-      <h3>My Tasks</h3>
-      <span><h3>Todo-List Selesai : {finishedCount}/{totalTodo}</h3></span>
+    <div className={`p-6! rounded-2xl shadow-lg flex-1 max-w-flex! flex flex-col justify-center transition-colors duration-300
+      ${isDarkMode ? "bg-[#242526] text-[#ffffff]" : "bg-[#ffffff] text-[#333]"}`}>
+
+      <div className='flex justify-between items-center mb-3!'>
+      <h3 className="font-bold text-lg">My Tasks</h3>
+      <span className={`text-sm p-3 rounded-full`}>
+        <h3 className='font-bold text-lg '>Todo-List Selesai : {finishedCount}/{totalTodo}</h3>
+      </span>
     </div>
-      <div className="input-group">
+
+    <div className="flex gap-2! mb-4!">
         <input
           ref={inputRef}
           type="text"
           value={todo}
           placeholder="Tulis tugas baru..."
-          onChange={(e) => setTodo(e.target.value)}
-        />
+          onChange={(e) => setTodo(e.target.value)} className={`flex-1 p-3! border rounded-lg outline-none transition-all  ${
+            isDarkMode 
+              ? "bg-transparent border-[#666666] focus:border-[#4285f4] text-white placeholder-[#666666]" 
+              : "bg-transparent border-[#e4e6eb] focus:border-[#4285f4] text-[#242526]"
+          }`}/>
 
+        <div className='flex gap-2'>
         <Button 
         type='button'
         variant="secondary" 
@@ -82,22 +89,29 @@ const sortedTodo = useMemo(()=>{
         onClick={()=>addTodoHandler()}>
           Add
         </Button>
-      </div>
+        </div>
+    </div>
+
       {list.length === 0 ? <NoItem/> : (
-              <ul id="todo-list" className="todo-list">
+      <ul className="flex flex-col gap-3  ">
         {sortedTodo.map((element, index) => {
           return (
-            <li key={index}>
-              <span>
+            <li key={index} className={`flex justify-between items-center p-3! px-4! rounded-lg border-l-4 shadow-sm transition-all ${
+                    isDarkMode 
+                    ? "bg-[#333333] border-[#333333] border-l-[#4285f4]" 
+                    : "bg-[#ffffff] border-[#ffffff] border-l-[#4285f4]"
+                }`}>
+              
+              <span className="font-medium">
                 <b>{element.id}</b> {element.deskripsi}
               </span>
-              <div className='action-button' >
-              <Button variant='succes' onClick={()=>succesTodo(element.id)}>
-                  <FaCheck />
+              <div className="flex gap-2" >
+              <Button variant='success' onClick={()=>succesTodo(element.id)}>
+                <FaCheck />
               </Button>
 
               <Button variant='danger' onClick={()=>deleteTodo(element.id)}>
-                  <FaTrash />
+                <FaTrash />
               </Button>
               </div>
             </li>

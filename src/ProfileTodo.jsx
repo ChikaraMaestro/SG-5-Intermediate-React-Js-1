@@ -1,5 +1,4 @@
 import { useEffect,useState,useRef } from 'react';
-
 import ProfileCard from './components/ProfileCard';
 import TodoList from './components/Todolist';
 
@@ -21,9 +20,9 @@ useEffect(()=>{
 },[isDarkMode])
 
   return (
-    <section className="app-container">
+    <section className="flex gap-3.5">
       <ProfileCard isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-      <TodoList inputRef={inputRef}/>
+      <TodoList inputRef={inputRef} isDarkMode={isDarkMode}/>
     </section>
   );
 };

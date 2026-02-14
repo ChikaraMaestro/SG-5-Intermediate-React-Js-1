@@ -1,5 +1,3 @@
-import '../assets/css/todolist.css'
-
 export default function Button({
     children,
     onClick,
@@ -8,11 +6,11 @@ export default function Button({
 }){
     let className = "btn"
 
-    if(variant === "primary") className+= " btn-primary";
-    if(variant === "danger") className+= " btn-error";
-    if(variant === "secondary") className+= " btn-secondary";
-    if(variant === "warning") className+= " warning";
-    if(variant === "succes") className+= " btn-succes";
+    if(variant === "primary") className+= " bg-[#4285f4] text-white";
+    if(variant === "danger") className+= " bg-[#f24444] text-white";
+    if(variant === "secondary") className+= " bg-[#e4e6eb] text-[#333333]";
+    if(variant === "warning") className+= " bg-[#f3d600] text-white";
+    if(variant === "success") className+= " bg-[#2ecc71] text-white";
 
     return  (
         <button type={type} onClick={onClick} className={className} >
